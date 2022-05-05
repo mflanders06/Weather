@@ -3,14 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CurrentWeatherComponent } from './current-weather/current-weather.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FiveDayComponent } from './five-day/five-day.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CurrentWeatherComponent,
+    FiveDayComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

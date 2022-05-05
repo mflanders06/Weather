@@ -1,0 +1,9 @@
+<h2>Current Weather in {{weather?.name}}</h2>
+<div class="temp-desc">
+    <p>{{weather?.main?.temp}} &#8457;</p>
+    <div *ngFor="let weather of weather?.weather">
+        <div>{{weather.description}}</div>
+        <div><img src="http://openweathermap.org/img/wn/{{weather.icon}}@2x.png" alt="Current weather icon"></div>
+    </div>
+</div>
+<app-five-day></app-five-day>

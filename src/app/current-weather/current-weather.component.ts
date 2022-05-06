@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Weather } from 'src/app/weather';
+import { Coord } from '../coord';
 import { DataService } from '../data.service';
 import { FullReport } from '../fullReport';
+import { OneCall } from '../oneCall';
 
 
 @Component({
@@ -12,25 +14,39 @@ import { FullReport } from '../fullReport';
 })
 export class CurrentWeatherComponent implements OnInit {
 
-  weather: Weather | null = null
+  weather: OneCall | null = null
 
-  sevenDayWeather: FullReport | null = null
+  position: GeolocationPosition | null = null
+
+  coordinates: Coord = {name: "West Valley City",
+                          lat: 40.696629,
+                          lon: -111.9867271
+                       }
 
 
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
 
-    this.getCurrentWeather();
+    this.getBrowserLocation();
     this.getWeather();
-  }
-
-  getCurrentWeather(){
-    this.dataService.getCurrentWeather('west valley').subscribe(currentWeather => (this.weather = currentWeather));
   }
   
   getWeather(){
-    this.dataService.getSearchedWeather({}).subscribe(sevenDayWeather => this.sevenDayWeather = sevenDayWeather)
+    const coord: Coord = {
+      lat: this.position?.coords.latitude || 40,
+      lon: this.position?.coords.longitude || -112
+    }
+    this.dataService.getWeather(coord).subscribe(weather => this.weather = weather)
   }
+
+  getBrowserLocation(){
+    navigator.geolocation.getCurrentPosition(position => this.position = position)
+  }
+
+  getCoordFromPosition(){
+    
+  }
+
 
 }

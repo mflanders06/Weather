@@ -6,4 +6,6 @@
         <div><img src="http://openweathermap.org/img/wn/{{weather.icon}}@2x.png" alt="Current weather icon"></div>
     </div>
 </div>
-<app-five-day></app-five-day>
+<a routerLink="/search">City Search</a>
+<app-five-day [weather]="sevenDayWeather?.oneCall"></app-five-day>
+

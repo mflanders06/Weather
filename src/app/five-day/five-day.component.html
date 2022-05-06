@@ -1,6 +1,19 @@
 <h3>5 Day Forcast</h3>
-<div>
-    <div *ngFor="let day of fiveDay?.list">
-        <div>hi</div>
+<div class="five-day-cards">
+    <div class="daily-card" *ngFor="let day of weather?.daily">
+        <div>High: {{day.temp.max}}</div>
+        <div *ngFor="let weather of day?.weather">
+            <img 
+                src="http://openweathermap.org/img/wn/{{weather.icon}}@2x.png"
+                alt="Current weather icon"
+            >
+            <div>{{weather.description}}</div>
+        </div>
+        <div>Low: {{day.temp.min}}</div>
+        <div>Wind Speed: {{day.wind_speed}}</div>
     </div>
 </div>
+
+<!-- comment
+line 2
+ -->

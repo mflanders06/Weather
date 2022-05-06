@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Weather } from 'src/app/weather';
 import { API_KEY } from '../../config';
 import { Coord } from './coord';
@@ -44,13 +44,13 @@ export class DataService {
     //lon = longitude (numerical, east is positive, west is negative)
     //limit = how many cities to return (we're only pulling 1)
     //appid = api key
-    const url = `${URL}geo/1.0/direct?q=${city}&limit=1&appid=${API_KEY}`
+    const url = `${URL}geo/1.0/direct?q=${city},UT,US&limit=1&appid=${API_KEY}`
     return this.http.get<Coord>(url)
   }
 
   getCoordZip(zip: number): Observable<Coord>{
     //api call parameters - see getCoordCity
-    const url = `${URL}geo/1.0/zip?zip=${zip},GB&appid=${API_KEY}`
+    const url = `${URL}geo/1.0/zip?zip=${zip},US&appid=${API_KEY}`
     return this.http.get<Coord>(url)
   }
 
@@ -58,9 +58,17 @@ export class DataService {
     return searched.searchByOption === 'City' ? this.getCoordCity(searched.citySearch) : this.getCoordZip(Number(searched.citySearch))
   }
 
-  getWeather(coord: Coord): Observable<OneCall>{
+  getWeatherData(coord: Coord): Observable<OneCall>{
     const url = `${URL}data/2.5/onecall?lat=${coord.lat}&lon=${coord.lon}&units=imperial&minutely,hourly,alerts&units=imperial&appid=${API_KEY}`
     return this.http.get<OneCall>(url)
+  }
+
+  getWeather(coord: any){
+    if(coord.lat){
+      return this.getWeatherData(coord)
+    } else {
+      return this.getWeatherData(coord[0])
+    }
   }
 
 }

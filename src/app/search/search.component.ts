@@ -39,6 +39,11 @@ export class SearchComponent implements OnInit {
     this.dataService.getCoords(value).subscribe(coords => {
       this.getWeather(coords)
       this.coordinates = coords
+      
+      if(this.formGroup.get('searchByOption')?.value === 'City'){
+      this.coordinates.name = this.formGroup.get('citySearch')?.value
+      }
+      console.log(this.coordinates)
     })
   }
 

@@ -10,7 +10,7 @@ import { OneCall } from '../oneCall';
 })
 export class FiveDayComponent {
 
-  @Input() weather?: OneCall
+  @Input() weather: OneCall | null = null
 
 
 }

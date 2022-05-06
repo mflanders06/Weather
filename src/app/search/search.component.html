@@ -7,3 +7,5 @@
     <input type="text" id="citySearch" formControlName="citySearch">
     <button type="submit" >Search</button>
 </form>
+<app-today-weather [weather]="searchedWeather" [coordinates]="coordinates"></app-today-weather>
+<app-five-day [weather]="searchedWeather"></app-five-day>

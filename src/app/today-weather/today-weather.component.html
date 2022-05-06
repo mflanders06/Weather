@@ -1,11 +1,8 @@
-<!-- <h2>Current Weather in {{position?.name}}</h2> -->
+<h2>Current Weather in {{coordinates?.name}}</h2>
 <div class="temp-desc">
-    <p>{{weather?.current?.temp}} &#8457;</p>
+    <p *ngIf="weather?.current?.temp" >{{weather?.current?.temp}} &#8457;</p>
     <div *ngFor="let weather of weather?.current?.weather">
         <div>{{weather.description}}</div>
         <div><img src="http://openweathermap.org/img/wn/{{weather.icon}}@2x.png" alt="Current weather icon"></div>
     </div>
 </div>
-<a routerLink="/search">City Search</a>
-<app-five-day [weather]="weather"></app-five-day>
-

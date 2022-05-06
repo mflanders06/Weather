@@ -8,13 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FiveDayComponent } from './five-day/five-day.component';
 import { SearchComponent } from './search/search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TodayWeatherComponent } from './today-weather/today-weather.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CurrentWeatherComponent,
     FiveDayComponent,
-    SearchComponent
+    SearchComponent,
+    TodayWeatherComponent
   ],
   imports: [
     BrowserModule,

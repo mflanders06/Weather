@@ -1,11 +1,16 @@
 <form [formGroup]="formGroup" (ngSubmit)="getCoords()">
-    <label for="searchByOption">Search by: </label>
-    <select formControlName="searchByOption">
-        <option *ngFor="let item of searchBy" [value]="item" >{{item}}</option>
-    </select>
-    <label for="citySearch">{{selectedSearchOption}}: </label>
-    <input type="text" id="citySearch" formControlName="citySearch">
-    <button type="submit" >Search</button>
+
+    <mat-form-field appearance="fill">
+        <mat-label for="searchByOption">Search by: </mat-label>
+        <mat-select formControlName="searchByOption">
+            <mat-option *ngFor="let item of searchBy" [value]="item" >{{item}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>{{selectedSearchOption}}</mat-label>
+        <input matInput type="text" id="citySearch" formControlName="citySearch">
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" >Search</button>
 </form>
 <app-today-weather [weather]="searchedWeather" [coordinates]="coordinates"></app-today-weather>
 <app-five-day [weather]="searchedWeather"></app-five-day>

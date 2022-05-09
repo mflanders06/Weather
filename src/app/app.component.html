@@ -1,3 +1,12 @@
-<body><h1>{{title | uppercase}}</h1>
-<router-outlet></router-outlet>
+<body>
+    <mat-toolbar color="primary">
+        <button mat-icon-button color="default" routerLink="/home" routerLinkActive="true">
+            <mat-icon>home</mat-icon>
+        </button>
+        <button mat-raised-button color="primary" routerLink="/search" routerLinkActive="true">Search</button>
+    </mat-toolbar>
+    <div class="outside">
+        <h1>{{title | uppercase}}</h1>
+        <router-outlet></router-outlet>
+    </div>
 </body>

@@ -1,6 +1,9 @@
 .five-day-cards {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-auto-flow: column;
+    grid-row: 1;
+    gap: 15px;
+    width: 100%;    
 }
 
 .daily-card {
@@ -8,6 +11,11 @@
     border: 2px solid grey;
     border-radius: 3px;
     box-shadow: 1px 1px 1px 1px lightgray;
-    width: 15vw;
+    width: 11vw;
     text-align: center;
+
+}
+
+.wind {
+    font-size: 12px;
 }
